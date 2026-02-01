@@ -1,4 +1,4 @@
-// Product Catalogue Page Component
+// IndiaDataHub Assignment - Catalogue Page Component
 
 'use client';
 

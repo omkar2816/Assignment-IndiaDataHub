@@ -1,6 +1,6 @@
-# Product Catalogue Application
+# IndiaDataHub-Assignment
 
-A comprehensive React/Next.js application for browsing and managing product catalogues with advanced search, pagination, and dataset switching capabilities.
+A comprehensive React/Next.js application for browsing and managing data catalogues with advanced search, pagination, and dataset switching capabilities.
 
 ## Features
 
@@ -87,7 +87,7 @@ Use any of these sample credentials to access the application:
 
 ### Navigation Flow
 1. **Login Page** (`/`) - Enter credentials to authenticate
-2. **Product Catalogue** (`/catalogue`) - Main application interface
+2. **Data Catalogue** (`/catalogue`) - Main application interface
 
 ### Key Features Usage
 

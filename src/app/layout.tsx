@@ -15,8 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Product Catalogue",
-  description: "A comprehensive product catalogue application with dataset management",
+  title: "IndiaDataHub-Assignment",
+  description: "IndiaDataHub Assignment - A comprehensive data catalogue application with dataset management",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
