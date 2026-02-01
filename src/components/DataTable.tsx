@@ -62,7 +62,7 @@ function SortableHeader({ field, label, icon, sortField, sortDirection, onSort }
 }
 
 export default function DataTable({ searchTerm = '' }: DataTableProps) {
-  const { frequentData, isLoading, error } = useData();
+  const { frequentData, isLoading, error, totalRecords } = useData();
   const { startMeasurement, endMeasurement } = usePerformanceMonitor('DataTable Render');
   
   // Sorting state
@@ -246,7 +246,7 @@ export default function DataTable({ searchTerm = '' }: DataTableProps) {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3">
-              <div className="h-8 w-8 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+              <div className="h-8 w-8 bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-lg flex items-center justify-center">
                 <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -274,7 +274,7 @@ export default function DataTable({ searchTerm = '' }: DataTableProps) {
           <div className="flex items-center space-x-3">
             <div className="bg-white border border-slate-200 rounded-lg px-3 py-2 shadow-sm">
               <span className="text-sm font-medium text-slate-700">
-                Page {currentPage} of {totalPages}
+                {totalRecords.toLocaleString()} records
               </span>
             </div>
           </div>
@@ -360,11 +360,15 @@ export default function DataTable({ searchTerm = '' }: DataTableProps) {
               )}
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-slate-200">
+          <tbody className="divide-y divide-slate-200">
             {visibleData.map((item: FrequentItem, index: number) => (
               <tr 
                 key={item.id} 
-                className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 group border-b border-slate-100"
+                className={`transition-all duration-200 group border-b border-slate-100 ${
+                  index % 2 === 0 
+                    ? 'bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50' 
+                    : 'bg-slate-50 hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100'
+                }`}
               >
                 <td className="px-6 py-4 text-sm text-slate-900">
                   <div className="max-w-xs min-w-0">
@@ -397,7 +401,7 @@ export default function DataTable({ searchTerm = '' }: DataTableProps) {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
-                  <div className="bg-slate-100 text-slate-800 px-3 py-1.5 rounded-lg font-medium border group-hover:bg-slate-200 group-hover:border-slate-300 transition-all duration-200">
+                  <div className="bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 px-3 py-1.5 rounded-lg font-medium border border-amber-200 group-hover:from-amber-200 group-hover:to-yellow-200 group-hover:border-amber-300 transition-all duration-200 shadow-sm">
                     {item.unit}
                   </div>
                 </td>
@@ -488,8 +492,8 @@ export default function DataTable({ searchTerm = '' }: DataTableProps) {
                       onClick={() => goToPage(pageNum as number)}
                       className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-sm ${
                         pageNum === currentPage
-                          ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md transform scale-105'
-                          : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                          ? 'bg-gradient-to-r from-indigo-600 to-indigo-800 text-white shadow-md transform scale-105'
+                          : 'bg-white border border-slate-300 text-slate-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-indigo-100 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
                       }`}
                     >
                       {pageNum}

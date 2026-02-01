@@ -14,8 +14,9 @@ interface SidebarProps {
 function CategoryTree({ categories, level = 0 }: { categories: Categories; level?: number }) {
   return (
     <ul className={`${level > 0 ? 'ml-4 pl-4' : ''} space-y-2 overflow-hidden`}>
-      {Object.entries(categories).map(([key, value]) => {
+      {Object.entries(categories).map(([key, value], index) => {
         const hasChildren = Object.keys(value).length > 0;
+        const isFirstTopLevelCategory = level === 0 && index === 0;
         
         return (
           <li key={key} className="text-sm">
@@ -28,11 +29,11 @@ function CategoryTree({ categories, level = 0 }: { categories: Categories; level
               `}
             >
               {hasChildren ? (
-                <details className="group" open={level === 0}>
+                <details className="group" open={isFirstTopLevelCategory}>
                   <summary className="flex items-center justify-between cursor-pointer list-none">
                     <span className="select-none flex items-center space-x-2 min-w-0 flex-1">
                       {level === 0 && (
-                        <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-full flex-shrink-0"></div>
                       )}
                       <span className="truncate" title={key}>{key}</span>
                     </span>
@@ -63,7 +64,7 @@ function CategoryTree({ categories, level = 0 }: { categories: Categories; level
                 </details>
               ) : (
                 <div className="flex items-center space-x-2 min-w-0">
-                  <div className="w-1.5 h-1.5 bg-slate-400 rounded-full flex-shrink-0"></div>
+                  <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full flex-shrink-0"></div>
                   <span className="truncate" title={key}>{key}</span>
                 </div>
               )}
@@ -102,7 +103,7 @@ export default function Sidebar({ isCollapsed = false, onToggle }: SidebarProps)
     <div className="w-80 bg-gradient-to-b from-slate-50 to-white border-r border-slate-200/50 flex flex-col h-full shadow-lg">
       <div className="flex items-center justify-between p-6 border-b border-slate-200/50 bg-white/80 backdrop-blur-sm flex-shrink-0">
         <div className="flex items-center space-x-3">
-          <div className="h-8 w-8 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+          <div className="h-8 w-8 bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-lg flex items-center justify-center">
             <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>

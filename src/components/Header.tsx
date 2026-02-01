@@ -56,7 +56,7 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
           {/* Left side - Title and Dataset Info */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3">
-              <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+              <div className="h-10 w-10 bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-xl flex items-center justify-center">
                 <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
@@ -72,9 +72,6 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
                 <span className="font-semibold text-slate-800">
                   {currentDataset === 'default' ? 'Default' : 'IMF'}
                 </span>
-              </div>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg px-3 py-1">
-                <span className="text-blue-800 font-medium text-sm">{totalRecords.toLocaleString()} records</span>
               </div>
               {isLoading && (
                 <div className="flex items-center space-x-2 bg-orange-50 border border-orange-200 rounded-lg px-3 py-1">
@@ -124,9 +121,7 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
                   className="flex items-center justify-between text-sm border border-slate-200 rounded-xl px-4 py-2.5 bg-white/90 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm font-medium text-slate-700 hover:bg-white hover:shadow-md hover:border-blue-300 cursor-pointer min-w-44 group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <div className="flex items-center space-x-2">
-                    <div className={`w-2 h-2 rounded-full ${
-                      currentDataset === 'default' ? 'bg-gradient-to-r from-blue-500 to-indigo-500' : 'bg-gradient-to-r from-purple-500 to-pink-500'
-                    }`}></div>
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-800"></div>
                     <span>{currentDataset === 'default' ? 'Default Dataset' : 'IMF Dataset'}</span>
                   </div>
                   <svg
@@ -160,7 +155,7 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
                             : 'text-slate-700 hover:text-blue-700'
                         }`}
                       >
-                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex-shrink-0"></div>
+                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-800 flex-shrink-0"></div>
                         <div className="flex-1 text-left">
                           <div className="font-medium">Default Dataset</div>
                           <div className="text-xs text-slate-500 group-hover:text-blue-600">Standard product catalogue data</div>
@@ -179,7 +174,7 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
                             : 'text-slate-700 hover:text-purple-700'
                         }`}
                       >
-                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex-shrink-0"></div>
+                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-indigo-800 flex-shrink-0"></div>
                         <div className="flex-1 text-left">
                           <div className="font-medium">IMF Dataset</div>
                           <div className="text-xs text-slate-500 group-hover:text-purple-600">International Monetary Fund data</div>
@@ -200,7 +195,7 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
             {/* User Menu */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-3 bg-white/80 border border-slate-200 rounded-xl px-3 py-2 backdrop-blur-sm">
-                <div className="h-8 w-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-sm">
+                <div className="h-8 w-8 bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-lg flex items-center justify-center shadow-sm">
                   <span className="text-sm font-bold text-white">
                     {user?.username?.[0]?.toUpperCase()}
                   </span>
@@ -211,7 +206,7 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
               </div>
               <button
                 onClick={logout}
-                className="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border border-red-200 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none shadow-sm hover:shadow-md"
               >
                 Sign out
               </button>
@@ -226,7 +221,6 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
           <span>
             Dataset: <span className="font-medium">{currentDataset === 'default' ? 'Default' : 'IMF'}</span>
           </span>
-          <span>{totalRecords.toLocaleString()} records</span>
         </div>
       </div>
     </header>
