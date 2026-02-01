@@ -283,8 +283,9 @@ export default function DataTable({ searchTerm = '' }: DataTableProps) {
 
       {/* Table */}
       <div className="flex-1 overflow-auto min-h-0">
-        <table className="w-full divide-y divide-slate-200">
-          <thead className="bg-gradient-to-r from-slate-100 to-slate-50 border-b border-slate-200 sticky top-0 z-10">
+        <div className="min-w-full overflow-x-auto">
+          <table className="w-full divide-y divide-slate-200 min-w-[800px]">
+            <thead className="bg-gradient-to-r from-slate-100 to-slate-50 border-b border-slate-200 sticky top-0 z-10">
             <tr>
               <SortableHeader
                 field="title"
@@ -431,6 +432,7 @@ export default function DataTable({ searchTerm = '' }: DataTableProps) {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       {/* Pagination */}

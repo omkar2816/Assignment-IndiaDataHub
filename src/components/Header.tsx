@@ -82,9 +82,9 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
             </div>
           </div>
 
-          {/* Center - Search */}
-          <div className="flex-1 max-w-md mx-4">
-            <div className="relative">
+          {/* Center - Search (Desktop Only) */}
+          <div className="hidden lg:flex flex-1 max-w-md mx-2 sm:mx-4">
+            <div className="relative w-full">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-[99]">
                 <svg className="h-5 w-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -111,9 +111,9 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
           </div>
 
           {/* Right side - Dataset Switcher and User Menu */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             {/* Dataset Switcher */}
-            <div className="flex items-center space-x-3">
+            <div className="hidden md:flex items-center space-x-3">
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -193,20 +193,20 @@ export default function Header({ onSearch, searchTerm = '' }: HeaderProps) {
             </div>
 
             {/* User Menu */}
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-3 bg-white/80 border border-slate-200 rounded-xl px-3 py-2 backdrop-blur-sm">
-                <div className="h-8 w-8 bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-lg flex items-center justify-center shadow-sm">
-                  <span className="text-sm font-bold text-white">
+            <div className="flex items-center space-x-1 sm:space-x-3">
+              <div className="flex items-center space-x-2 sm:space-x-3 bg-white/80 border border-slate-200 rounded-lg sm:rounded-xl px-2 sm:px-3 py-1.5 sm:py-2 backdrop-blur-sm">
+                <div className="h-6 w-6 sm:h-8 sm:w-8 bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-lg flex items-center justify-center shadow-sm">
+                  <span className="text-xs sm:text-sm font-bold text-white">
                     {user?.username?.[0]?.toUpperCase()}
                   </span>
                 </div>
-                <span className="text-sm font-semibold text-slate-700 hidden sm:block">
+                <span className="text-xs sm:text-sm font-semibold text-slate-700 block">
                   {user?.username}
                 </span>
               </div>
               <button
                 onClick={logout}
-                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none shadow-sm hover:shadow-md"
+                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 focus:outline-none shadow-sm hover:shadow-md"
               >
                 Sign out
               </button>
